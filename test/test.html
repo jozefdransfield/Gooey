@@ -5,67 +5,26 @@
 	<script src="../lib/gooey-browser.js"></script>
 
 	<script>
-		var LoginView = View.extend({
-			sel: function(parent) {
-				return $(parent).find("#loginView");
-			},
-			init: function() {
-				this._super();
-				this.model = new Login();
 
-				this.addView(new UsernameFieldView(this.model.put("username")));
-				this.addView(new PasswordFieldView(this.model.put("password")));
+	   var Login = Gooey.Model.extend({
+		   meta: {
+			   username: String,
+			   password: String
+		   }
+	   });
 
-				this.model.on("change", function() {
-					console.log("wow wow whee wah");
-				});
-			},
-			renderTo: function(el) {
-				el.html("<fieldset id=\"usernameField\"></fieldset><fieldset id=\"passwordField\"></fieldset>");
-				return el;
-			},
-			events: function() {
-				// add a login button
-			}
-		});
+		var login = new Login();
 
-		var TextFieldView = View.extend({
-			init: function(model) {
-				this._super();
-				this.model = model;
-			},
-			renderTo: function(el) {
-				el.html("<input type='text' placeholder='Hello'/>");
-				return el;
-			},
-			events: function(el) {
-				var self = this;
-				el.find("input").on("change", function(event) {
-					self.model.set($(event.target).val())
-				})
-			}
-		});
+		login.username = "hello"
 
-		var UsernameFieldView = TextFieldView.extend({
-			sel: function(parent) {
-				 return $(parent).find("#usernameField");
-			}
-		});
+		alert(login.username)
 
-		var PasswordFieldView = TextFieldView.extend({
-			sel: function(parent) {
-				 return $(parent).find("#passwordField");
-			}
-		});
+		login.username.on("change", function() {
+			console.log("eh oh");
+		})
 
-		var Login = Model.extend({
-		});
+		login.username = "bob"
 
-
-		window.onload = function() {
-			var loginView = new LoginView();
-			loginView.render();
-		}
 	</script>
 </head>
 <body>
