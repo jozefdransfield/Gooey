@@ -6,32 +6,39 @@
 
 	<script>
 
-	   var Login = Gooey.Model.extend({
+	   var Person = Gooey.Model.extend({
 		   meta: {
-			   username: String,
-			   password: String
+			   name: String,
+			   Surname: String,
+			   address: Address
 		   }
 	   });
 
-		var login = new Login();
+	   var Address = Gooey.Model.extend({
+		meta: {
+			number: Number,
+			name: String
+		}
+	   });
 
-		login.username = "hello"
+		var jozef = new Person();
 
-		alert(login.username)
+		jozef.name = "Jozef"
 
-		login.username.on("change", function() {
+		alert(jozef.name)
+
+		jozef.name.on("change", function() {
 			console.log("eh oh");
 		})
 
-		login.username = "bob"
+		jozef.name = "bob"
+		
 
 	</script>
 </head>
 <body>
 
-<div id="loginView">
-	
-</div>
+
 
 </body>
 </html>
