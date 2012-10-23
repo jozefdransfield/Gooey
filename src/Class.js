@@ -12,16 +12,16 @@
     Class.extend = function(prop) {
         var _super = this.prototype;
 
-        // Instantiate a base class (but only create the instance,
-        // don't run the init constructor)
-        initializing = true;
-        var prototype = new this();
-        initializing = false;
+            // Instantiate a base class (but only create the instance,
+            // don't run the init constructor)
+            initializing = true;
+            var prototype = new this();
+            initializing = false;
 
-        // Copy the properties over onto the new prototype
-        for (var name in prop) {
-            // Check if we're overwriting an existing function
-            prototype[name] = typeof prop[name] == "function" &&
+            // Copy the properties over onto the new prototype
+            for (var name in prop) {
+                // Check if we're overwriting an existing function
+                prototype[name] = typeof prop[name] == "function" &&
                 typeof _super[name] == "function" && fnTest.test(prop[name]) ?
                 (function(name, fn){
                     return function() {
